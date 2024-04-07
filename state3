@@ -1,0 +1,454 @@
+// modifiing number is the function direclty is very bad practise 
+//  this is very bad practise 
+// function addTwoNumbers(a, b) {
+//     a = 42
+//     return a + b
+// }
+
+// console.log(addTwoNumbers(1, 2))
+
+// function Navbar(props) {
+//     props.coverImage = "something else"
+// }
+
+// 
+
+
+import React from "react"
+
+export default function App() {
+    const result = React.useState("Yes")
+    console.log(result)
+    return (
+        <div className="state">
+            <h1 className="state--title">Is state important to know?</h1>
+            <div className="state--value">
+                <h1>{result[0]}</h1>
+            </div>
+        </div>
+    )
+}
+
+import React from "react"
+
+export default function App() {
+    const [isImportant, func] = React.useState("Yes")
+    console.log(isImportant)
+    return (
+        <div className="state">
+            <h1 className="state--title">Is state important to know?</h1>
+            <div className="state--value">
+                <h1>{isImportant}</h1>
+            </div>
+        </div>
+    )
+}
+
+
+differnece between state and props 
+// 1. How would you describe the concept of "state"?
+// A way for React to remember saved values from within a component.
+// This is similar to declaring variables from within a component,
+// with a few added bonuses (which we'll get to later)
+
+
+// 2. When would you want to use props instead of state?
+// Anytime you want to pass data into a component so that
+// component can determine what will get displayed on the
+// screen.
+
+
+// 3. When would you want to use state instead of props?
+// Anytime you want a component to maintain some values from
+// within the component. (And "remember" those values even
+// when React re-renders the component).
+
+
+// 4. What does "immutable" mean? Are props immutable? Is state immutable?
+// Unchanging. Props are immutable. State is mutable.
+
+
+
+import React from "react"
+
+export default function App() {
+    const [isImportant, setIsImportant] = React.useState("Yes")
+    /**
+     * Challenge: 
+     * 1. Create a function called `handleClick` that runs
+     *    setIsImportant("No")
+     * 2. add a click event listener to the div.state--value
+     *    that runs `handleClick` when the div is clicked.
+     */
+    
+    function handleClick() {
+        setIsImportant("No")
+    }
+    
+    return (
+        <div className="state">
+            <h1 className="state--title">Is state important to know?</h1>
+            <div className="state--value" onClick={handleClick}>
+                <h1>{isImportant}</h1>
+            </div>
+        </div>
+    )
+}
+
+
+import React from "react"
+
+export default function App() {
+    /**
+     * Challenge: 
+     * Add functionality to the minus button
+     */
+    const [count, setCount] = React.useState(0)
+    
+    function add() {
+        setCount(count + 1)
+    }
+    
+    function subtract() {
+        setCount(count - 1)
+    }
+    
+    return (
+        <div className="counter">
+            <button className="counter--minus" onClick={subtract}>–</button>
+            <div className="counter--count">
+                <h1>{count}</h1>
+            </div>
+            <button className="counter--plus" onClick={add}>+</button>
+        </div>
+    )
+}
+
+
+unction add() {
+    setCount(function(oldValue) {
+        return oldValue + 1
+    })
+}
+
+export default function App() {
+    const [count, setCount] = React.useState(0)
+    /**
+     * Note: if you ever need the old value of state
+     * to help you determine the new value of state,
+     * you should pass a callback function to your
+     * state setter function instead of using
+     * state directly. This callback function will
+     * receive the old value of state as its parameter,
+     * which you can then use to determine your new
+     * value of state.
+     */
+    function add() {
+        setCount(prevCount => prevCount + 1)
+    }
+    // Challenge: update `substract` to use a callback function
+    
+    function subtract() {
+        setCount(prevCoucount - 1)
+    }
+
+    export default function App() {
+        const [count, setCount] = React.useState(0)
+        /**
+         * Note: if you ever need the old value of state
+         * to help you determine the new value of state,
+         * you should pass a callback function to your
+         * state setter function instead of using
+         * state directly. This callback function will
+         * receive the old value of state as its parameter,
+         * which you can then use to determine your new
+         * value of state.
+         */
+        function add() {
+            setCount(prevCount => prevCount + 1)
+        }
+        // Challenge: update `substract` to use a callback function
+        
+        function subtract() {
+            setCount(prevCoucount - 1)
+        }
+
+        1. You have 2 options for what you can pass in to a
+   state setter function (e.g. `setCount`). What are they?
+   
+a. New value of state (setCount(42))
+b. Callback function - whatever the callback function 
+   returns === new value of state
+
+ adding image to the project 
+
+export default function Meme() {
+    const [memeImage, setMemeImage] = React.useState("")
+    /**
+     * Challenge: Save the random meme URL in state
+     * - Below the div.form, add an <img /> and set the
+     *   src to the new `memeImage` state you created
+     */
+    
+    function getMemeImage() {
+        const memesArray = memesData.data.memes
+        const randomNumber = Math.floor(Math.random() * memesArray.length)
+        setMemeImage(memesArray[randomNumber].url)
+        
+    }
+    
+    //trnary operator 
+    const isGoingOut = false
+    let answer = isGoingOut === true ? "Yes" : "No"
+    
+    return (
+        <div className="state">
+            <h1 className="state--title">Do I feel like going out tonight?</h1>
+            <div className="state--value">
+                <h1>{answer}</h1>
+            </div>
+        </div>
+    )
+
+    const isGoingOut = false
+    
+    return (
+        <div className="state">
+            <h1 className="state--title">Do I feel like going out tonight?</h1>
+            <div className="state--value">
+                <h1>{isGoingOut ? "Yes" : "No"}</h1>
+            </div>
+        </div>
+    )
+
+    
+    export default function App() {
+        const [isGoingOut, setIsGoingOut] = React.useState(true)
+        /**
+         * Challenge: 
+         * - Initialize state for `isGoingOut` as a boolean
+         * - Make it so clicking the div.state--value flips that
+         *   boolean value (true -> false, false -> true)
+         * - Display "Yes" if `isGoingOut` is `true`, "No" otherwise
+         */
+        function changeMind() {
+            setIsGoingOut(prevState => !prevState)
+        }
+        
+        return (
+            <div className="state">
+                <h1 className="state--title">Do I feel like going out tonight?</h1>
+                <div onClick={changeMind} className="state--value">
+                    <h1>{isGoingOut ? "Yes" : "No"}</h1>
+                </div>
+            </div>
+        )
+    }
+    export default function App() {
+        const [isGoingOut, setIsGoingOut] = React.useState(true)
+        /**
+         * Challenge: 
+         * - Initialize state for `isGoingOut` as a boolean
+         * - Make it so clicking the div.state--value flips that
+         *   boolean value (true -> false, false -> true)
+         * - Display "Yes" if `isGoingOut` is `true`, "No" otherwise
+         */
+        function changeMind() {
+            setIsGoingOut(prevState => !prevState)
+        }
+        
+        return (
+            <div className="state">
+                <h1 className="state--title">Do I feel like going out tonight?</h1>
+                <div onClick={changeMind} className="state--value">
+                    <h1>{isGoingOut ? "Yes" : "No"}</h1>
+                </div>
+            </div>
+        )
+    }
+
+    */
+   // example of array in state  
+
+    const [thingsArray, setThingsArray] = React.useState(["Thing 1", "Thing 2"])
+    
+    function addItem() {
+        // We'll work on this next
+        setThingsArray(prevThingsArray => {
+            return [...prevThingsArray, `Thing ${prevThingsArray.length + 1}`]
+        })
+    }
+    
+// example of object in state
+const [contact, setContact] = React.useState({
+    firstName: "John",
+    lastName: "Doe",
+    phone: "+1 (719) 555-1212",
+    email: "itsmyrealname@example.com",
+    isFavorite: true
+})
+
+let starIcon = contact.isFavorite ? "star-filled.png" : "star-empty.png"
+
+function toggleFavorite() {
+    console.log("Toggle Favorite")
+}
+
+return (
+    <main>
+        <article className="card">
+            <img src="./images/user.png" className="card--image" />
+            <div className="card--info">
+                <img 
+                    src={`../images/${starIcon}`}
+
+                    /
+//  example of updating state  object react
+
+export default function App() {
+    const [contact, setContact] = React.useState({
+        firstName: "John",
+        lastName: "Doe",
+        phone: "+1 (719) 555-1212",
+        email: "itsmyrealname@example.com",
+        isFavorite: false
+    })
+    
+    let starIcon = contact.isFavorite ? "star-filled.png" : "star-empty.png"
+    
+    function toggleFavorite() {
+        setContact(prevContact => ({
+            ...prevContact,
+            isFavorite: !prevContact.isFavorite
+        }))
+    }
+
+
+ using state and propes together
+ export default function Count(props) {
+    console.log("Count component rendered")
+    
+    return (
+        <div className="counter--count">
+            <h1>{props.number}</h1>
+        </div>
+    )
+}
+
+function add() {
+    setCount(prevCount => prevCount + 1)
+}
+
+function subtract() {
+    setCount(prevCount => prevCount - 1)
+}
+
+console.log("App component rendered")
+
+return (
+    <div className="counter">
+        <button className="counter--minus" onClick={subtract}>–</button>
+        <Count number={count} />
+        <button className="counter--plus" onClick={add}>+</button>
+
+</div></div>
+// using custom component
+
+
+})
+    
+function toggleFavorite() {
+    setContact(prevContact => ({
+        ...prevContact,
+        isFavorite: !prevContact.isFavorite
+    }))
+}
+
+return (
+    <main>
+        <article className="card">
+            <img src="./images/user.png" className="card--image" />
+            <div className="card--info">
+                <Star isFilled={contact.isFavorite} handleClick={toggleFavorite} />
+
+                export default function Star(props) {
+    const starIcon = props.isFilled ? "star-filled.png" : "star-empty.png"
+    return (
+        <img 
+            src={`../images/${starIcon}`} 
+            className="card--favorite"
+            onClick={props.handleClick}
+        />
+    )
+}
+/* using state as  parent compenet  */
+export default function App() {
+    const [user, setUser] = React.useState("Bob")
+    
+    return (
+        <main>
+            <Header user={user} />
+            <Body user={user} />
+        </main>
+    )
+
+
+// dynamic style in  react 
+
+export default function App(props) {
+    const [squares, setSquares] = React.useState(boxes)
+    props.darkMode
+    const styles = {
+        backgroundColor: 
+    }
+    
+    const squareElements = squares.map(square => (
+        <div style={styles} className="box" key={square.id}></div>
+    ))
+    return (
+        <main>
+            {squareElements}
+        </main>
+    )
+}
+    
+const styles = {
+    backgroundColor: props.darkMode ? "#222222" : "#cccccc"
+}
+
+
+import React from "react"
+
+export default function Box(props) {
+    const styles = {
+        backgroundColor: props.on ? "#222222" : "none"
+    }
+    
+    return (
+        <div style={styles} className="box"></div>
+    )
+}
+
+///</div>flipping   color
+//</article>creating state in each seprate  component
+import React from "react"
+
+export default function Box(props) {
+    const [on, setOn] = React.useState(props.on)
+    
+    const styles = {
+        backgroundColor: on ? "#222222" : "transparent"
+    }
+    
+    function toggle() {
+        setOn(prevOn => !prevOn)
+    }
+    
+    return (
+        <div style={styles} className="box" onClick={toggle}></div>
+    )
+}
+// craeting state in app  compponent and inherteriance in seprately it is good practise 
+// but it is  little bit complicated 
+
+
